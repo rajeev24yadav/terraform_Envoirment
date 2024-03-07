@@ -1,50 +1,50 @@
 RG_group1 = {
   rg1 = {
-    name     = "prod_rg1"
-    location = "centralindia"
+    name     = "prod_RG"
+    location = "Central India"
   }
 }
 meest1 = {
   V1 = {
-    name          = "prod_Vnet"
-    address_space = ["10.0.0.0/16"]
-    location      = "centralindia"
-    rg            = "prod_rg1"
+    name          = "dev_Vnet"
+    address_space = ["192.168.0.0/16"]
+    location      = "Central India"
+    rg            = "prod_RG"
 
 } }
 subnets1 = {
   sub1 = {
-    name                 = "prod_sub1"
-    rg                   = "prod_rg1"
-    virtual_network_name = "prod_Vnet"
-    address_prefixes     = ["10.0.0.0/24"]
+    name                 = "sub1"
+    rg                   = "prod_RG"
+    virtual_network_name = "dev_Vnet"
+    address_prefixes     = ["192.168.0.0/24"]
   }
 }
 public1 = {
   pip1 = {
-    name     = "prod_pip1"
-    rg       = "prod_rg1"
-    location = "centralindia"
+    name     = "dev_pip1"
+    rg       = "prod_RG"
+    location = "Central India"
   }
 }
 meest_nic1 = {
   nic = {
-    name                 = "prod_nic1"
-    location             = "centralindia"
-    rg                   = "prod_rg1"
-    subnet_name          = "prod_sub1"
-    virtual_network_name = "prod_Vnet"
-    publicip             = "prod_pip1"
+    name                 = "dev_nic1"
+    location             = "Central India"
+    rg                   = "prod_RG"
+    subnet_name          = "sub1"
+    virtual_network_name = "dev_Vnet"
+    publicip             = "dev_pip1"
 
   }
 }
 nsg_rule = {
   nsg1 = {
-    name                 = "prod_nsg"
-    rg                   = "prod_rg1"
-    location             = "centralindia"
-    subnet_name          = "prod_sub1"
-    virtual_network_name = "prod_Vnet"
+    name                 = "dev_nsg"
+    rg                   = "prod_RG"
+    location             = "Central India"
+    subnet_name          = "sub1"
+    virtual_network_name = "dev_Vnet"
 
 } }
 rule1 = {
@@ -73,21 +73,21 @@ rule1 = {
 }
 nsg_Association = {
   nsg_rule1 = {
-    rg                   = "prod_rg1"
-    subnet_name          = "prod_sub1"
-    virtual_network_name = "prod_Vnet"
-    nsg                  = "prod_nsg"
+    rg                   = "prod_RG"
+    subnet_name          = "sub1"
+    virtual_network_name = "dev_Vnet"
+    nsg                  = "dev_nsg"
   }
 }
 
 VM1 = {
   vms = {
-    name           = "prod_test"
-    rg             = "prod_rg1"
-    location       = "centralindia"
+    name           = "sub1"
+    rg             = "prod_RG"
+    location       = "Central India"
     size           = "Standard_F2"
     admin_username = "Amit"
     admin_password = "Password@123"
-    nicname        = "prod_nic1"
+    nicname        = "dev_nic1"
   }
 }
